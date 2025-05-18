@@ -1,10 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+	crossorigin="anonymous">
+<link href="<%=request.getContextPath()%>/MVCBoard/style/write.css"
+	rel="stylesheet" type="text/css" />
 <script>
 	function validateForm(form) { // 폼 내용 검증
 		if (form.name.value == "") {
@@ -26,37 +34,42 @@
 </script>
 </head>
 <body>
-<form name="writeFrm" method="post" enctype= "multipart/form-data" action="../mvcboard/edit.do"
-      onsubmit="return validateForm(this);">
-      <input type="hidden" name= 'idx' value="${ dto.idx }"/>
-      <input type="hidden" name= 'prevOfile' value="${ dto.ofile}"/>
-      <input type="hidden" name= 'prevSfile' value="${ dto.sfile}"/>
-	<table border="1" width="90%">
-			<tr>
-				<td>작성자</td>
-				<td><input type= "text" name= "name" style="width: 150px;" value= "${ dto.name }"></td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td><input type= "text" name= "title" style="width: 90%;" value= "${ dto.title }"></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><textarea name= "content" style= "width: 90%; height: 100px;">${ dto.content }</textarea></td>
-			</tr>
-			<tr>
-				<td>첨부파일</td>
-				<td><input type= "file" name= "ofile"/></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<button type="submit" >작성 완료</button>
-					<button type="reset">RESET</button>
-					<button type="button" onclick="location.href='../mvcboard/list.do';">목록 보기</button>
 
-				</td>
-			</tr>
-		</table>
+	<form class="write-form" name="writeFrm" method="post" enctype="multipart/form-data" action="../mvcboard/edit.do" onsubmit="return validateForm(this);">
+			<input type="hidden" name= 'idx' value="${ dto.idx }"/>
+	      <input type="hidden" name= 'prevOfile' value="${ dto.ofile }"/>
+	      <input type="hidden" name= 'prevSfile' value="${ dto.sfile }"/>
+		<div class="write-form__group write-form__group-name">
+			<label class="write-form__label" for="name">작성자</label>
+			 <input
+				class="write-form__input-name" type="text" id="name" name="name"
+				value="${ dto.name }" />
+		</div>
+		<div class="write-form__group write-form__group-title">
+			<label class="write-form__label" for="title">제목</label> 
+			<input
+				class="write-form__input" type="text" id="title" name="title"
+				value="${ dto.title }" />
+		</div>
+
+		<div class="write-form__group write-form__group-content">
+			<label class="write-form__label" for="content">내용</label>
+			<textarea class="write-form__input-content" id="content"
+				name="content">${ dto.content }</textarea>
+		</div>
+		<div class="mb-3">
+			<input class="form-control" type="file" name="ofile">
+		</div>
+
+		<div class="write-form__actions">
+			<button class="write-form__button btn btn-primary" type="submit">작성완료</button>
+			<button class="write-form__button btn btn-secondary" type="reset">다시입력</button>
+			<button class="write-form__button btn btn-secondary" type="button" onclick="location.href='../mvcboard/list.do';">목록 보기</button>
+		</div>
 	</form>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+		crossorigin="anonymous"></script>
 </body>
 </html>

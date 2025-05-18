@@ -19,6 +19,7 @@ public class ViewController extends HttpServlet
 	{
 		MVCBoardDAO dao = new MVCBoardDAO();
 		String idx = req.getParameter("idx");
+		System.out.println("idx: "+ idx);
 		dao.updateVisitCount(idx);
 		MVCBoardDTO dto = dao.selectView(idx);
 		dao.close();

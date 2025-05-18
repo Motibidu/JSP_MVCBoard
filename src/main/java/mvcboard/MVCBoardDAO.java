@@ -116,7 +116,7 @@ public class MVCBoardDAO extends DBConnPool
 	{
 		MVCBoardDTO dto = new MVCBoardDTO();
 		String query = "SELECT * FROM mvcboard WHERE idx= ?";
-
+		
 		try
 		{
 			psmt = con.prepareStatement(query);
@@ -149,11 +149,12 @@ public class MVCBoardDAO extends DBConnPool
 	public void updateVisitCount(String idx)
 	{
 		String query = "UPDATE mvcboard SET " + " visitcount= visitcount+ 1 " + " WHERE idx=?";
+		System.out.println("idx: "+ idx);
 		try
 		{
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, idx);
-			psmt.executeQuery();
+			psmt.executeUpdate();
 		}
 		catch (Exception e)
 		{
@@ -237,6 +238,7 @@ public class MVCBoardDAO extends DBConnPool
 			psmt.setString(5, dto.getSfile());
 			psmt.setString(6, dto.getIdx());
 			psmt.setString(7, dto.getPass());
+			
 			result = psmt.executeUpdate();
 
 			
